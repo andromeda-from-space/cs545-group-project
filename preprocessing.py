@@ -4,11 +4,10 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.model_selection import train_test_split
 from imblearn.over_sampling import SMOTE
-from ucimlrepo import fetch_ucirepo 
 
 def load_data(test_data, test_label, train_data, train_label):
     # Load the dataset
-    data = fetch_ucirepo(id=697) 
+    data = pd.read_csv('dataset.csv')
     print(f"Dataset shape: {data.shape}")
     
     # Handle missing values
@@ -146,7 +145,7 @@ def additional_preprocessing(train_data, train_label, test_data, test_label):
         test_data = np.column_stack((test_data, new_feature_test.reshape(-1, 1)))
         
         print(f"Added interaction feature. New data shape: {train_data.shape}")
-    
+    '''
     # Perform Principal Component Analysis for dimensionality reduction (optional)
     from sklearn.decomposition import PCA
     
@@ -157,7 +156,7 @@ def additional_preprocessing(train_data, train_label, test_data, test_label):
         
         print(f"Applied PCA. Reduced dimensions from {train_data.shape[1]} to {train_data_pca.shape[1]}")
         return train_data_pca, train_label, test_data_pca, test_label
-    
+    '''
     return train_data, train_label, test_data, test_label
 
 
@@ -205,10 +204,10 @@ def main():
     # Choose which dataset to use (uncomment one option)
     
     # Option 1: Load and preprocess student dropout data
-    # train_data, train_label, test_data, test_label = load_data(test_data, test_label, train_data, train_label)
+    train_data, train_label, test_data, test_label = load_data(test_data, test_label, train_data, train_label)
     
     # Option 2: Load and preprocess MNIST data
-    train_data, train_label, test_data, test_label = load_mnist_data(test_data, test_label, train_data, train_label)
+    #train_data, train_label, test_data, test_label = load_mnist_data(test_data, test_label, train_data, train_label)
     
     # Visualize the data
     visualize_data(train_data, train_label, test_data, test_label)
