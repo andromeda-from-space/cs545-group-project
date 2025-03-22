@@ -164,7 +164,7 @@ def display_results(pca_df, num_components, variance):
 
 if __name__ == "__main__":
     pca_sklearn(2)
-    pca_sklearn(4)
+    pca_sklearn(3)
     pca_sklearn(10)
     pca_manual(.95)
     pca_manual(.75)
